@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mechstudio"
+version = "0.1.0"
+description = "Offline, modular, OpenSCAD-powered parametric mechanical design studio"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Mechanical Parts Studio contributors"}]
+dependencies = ["PySide6-Essentials>=6.8,<7", "PySide6-Addons>=6.8,<7"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-cov>=5", "pyinstaller>=6"]
+
+[project.scripts]
+mechstudio = "mechstudio.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mechstudio = ["resources/*.qss"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
