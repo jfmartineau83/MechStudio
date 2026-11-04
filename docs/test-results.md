@@ -41,12 +41,18 @@ Command:
 
 ```powershell
 .\.venv\Scripts\pyinstaller.exe packaging\MechStudio.spec --noconfirm
+.\dist\MechStudio\MechStudio.exe --smoke-test
 ```
 
 Result: **successful**. The onedir build is under `dist/MechStudio`, occupies
-approximately 158 MB, and its executable passed a launch/responsiveness smoke
-test. PyInstaller reported only expected cross-platform optional imports
-(`pwd`, `grp`, `fcntl`, and related POSIX modules).
+approximately 113 MB, and its executable passed a main-window creation smoke
+test with exit code zero. The packaging spec replaces Python 3.14's older root
+MSVC runtime with the version shipped by PySide6, preventing a QtCore loader
+failure. It also filters host-only Codex runtime binaries from PyInstaller's
+analysis, preventing Poppler's incompatible ICU DLL from shadowing the Windows
+ICU implementation used by Qt. PyInstaller reported only expected
+cross-platform optional imports (`pwd`, `grp`, `fcntl`, and related POSIX
+modules).
 
 ## Manual checks still recommended before a public release
 

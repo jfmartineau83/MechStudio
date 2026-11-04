@@ -59,10 +59,13 @@ After installing the development extras and OpenSCAD:
 
 ```powershell
 pyinstaller packaging/MechStudio.spec --noconfirm
+.\dist\MechStudio\MechStudio.exe --smoke-test
 ```
 
 The build is written to `dist/MechStudio`. OpenSCAD is intentionally not
-redistributed; users may configure an installed copy in Preferences.
+redistributed; users may configure an installed copy in Preferences. The smoke
+test creates the real Qt main window in an isolated data directory and exits
+automatically; a zero exit code confirms the packaged native DLL chain loads.
 
 See [architecture.md](docs/architecture.md),
 [module-authoring.md](docs/module-authoring.md), and
